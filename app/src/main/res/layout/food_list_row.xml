@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!--Should only use Relative Layout as a last resort. For something this simple, a LinearLayout would suffice.-->
-<!--All dimensions should be in resources.-->
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content" android:layout_marginBottom="10dp"

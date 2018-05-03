@@ -19,38 +19,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodListViewHolder> {
-    private List<Food> foodList = new ArrayList<>(); // Even the IDE says this is not needed.
+    private List<Food> foodList = new ArrayList<>();
     private int foodListRow;
-    private Context context; // Should save context as little as possible.
+    private Context context;
 
-    /**
-     * No idea why this class is static.
-     * Or why it's so up high.
-     * Nested/Inner classes are supposed to be at the bottom of the outer class.
-     */
     static class FoodListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView foodTitle;
         private ImageView foodImage;
 
-        private FoodListViewHolder(View v) {  // Personally don't like the name v. Would rather use "view".
+        private FoodListViewHolder(View v) {
             super(v);
-            foodTitle = v.findViewById(R.id.foodTitle); // Once again, XML id should be food_title.
+            foodTitle = v.findViewById(R.id.foodTitle);
             foodImage = v.findViewById(R.id.foodImage);
             foodImage.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            Snackbar snackbar = Snackbar.make(view, R.string.great_choice, Snackbar.LENGTH_LONG); // Good job using String resources.
-            snackbar.show(); // Could've inlined the .show().
+            Snackbar snackbar = Snackbar.make(view, R.string.great_choice, Snackbar.LENGTH_LONG);
+            snackbar.show();
         }
     }
 
-    /**
-     * The constructor should be at the top.
-     * Also, when passing context, it should always be first. The order goes by importance?/size?
-     * Also, try not to pass context into non-Android classes.
-     */
     public FoodListAdapter(List<Food> foodList, int foodListRow, Context context) {
         this.foodList = foodList;
         this.foodListRow = foodListRow;
@@ -60,15 +50,14 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodLi
     @Override
     public FoodListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View foodView = LayoutInflater.from(parent.getContext()).inflate(foodListRow, parent, false);
-        return new FoodListViewHolder(foodView); // This could be inlined as well.
+        return new FoodListViewHolder(foodView);
     }
 
     @Override
     public void onBindViewHolder(FoodListViewHolder holder, int position) {
-        Food foodObject = foodList.get(position);  // Not a fan of naming something Object. All of java are objects.
+        Food foodObject = foodList.get(position);
         holder.foodTitle.setText(foodObject.getTitle());
 
-        // These options could've been chained with the Glide call.
         RequestOptions requestOptions = new RequestOptions()
                 .error(R.mipmap.fork_knife)
                 .placeholder(R.mipmap.fork_knife)

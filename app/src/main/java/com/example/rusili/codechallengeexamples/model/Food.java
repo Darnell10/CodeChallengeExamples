@@ -5,7 +5,6 @@ public class Food {
     private String image;
     private String title;
 
-    // Don't actually need setters. Useless code.
     public void setImage(String image) {
         this.image = image;
     }
@@ -14,7 +13,6 @@ public class Food {
         return image;
     }
 
-    // Don't actually need setters. Useless code.
     public void setTitle(String title) {
         this.title = title;
     }
