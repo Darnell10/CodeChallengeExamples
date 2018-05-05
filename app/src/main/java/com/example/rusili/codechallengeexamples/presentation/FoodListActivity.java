@@ -7,20 +7,12 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import com.example.rusili.codechallengeexamples.R;
 import com.example.rusili.codechallengeexamples.data.Food;
-import com.example.rusili.codechallengeexamples.data.FoodService;
 import com.example.rusili.codechallengeexamples.presentation.recyclerview.FoodListAdapter;
 
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FoodListActivity extends AppCompatActivity implements FoodListContract.View {
     private RecyclerView foodRecyclerview;
