@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@android:color/white">
+    android:layout_height="@dimen/food_viewholder_height"
+    android:background="@android:color/white"
+    android:paddingLeft="@dimen/viewholder_padding_left">
 
     <ImageView
         android:id="@+id/food_image"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="20dp"
-        tools:src="@drawable/fork_knife" />
+        android:layout_width="@dimen/food_viewholder_height"
+        android:layout_height="match_parent"
+        tools:src="@drawable/ic_replay_black_24dp" />
 
     <TextView
         android:id="@+id/food_name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="20dp"
-        android:textSize="30sp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/viewholder_padding_left"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/viewholder_title_text_size"
         tools:text="Example Food" />
 
 </LinearLayout>
