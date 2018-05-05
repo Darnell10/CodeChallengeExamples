@@ -32,7 +32,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodLi
         private TextView foodTitle;
         private ImageView foodImage;
 
-        private FoodListViewHolder(View v) {  // Personally don't like the name v. Would rather use "view".
+        private FoodListViewHolder(View v) {  // Nit: Personally don't like the name v. Would rather use "view".
             super(v);
             foodTitle = v.findViewById(R.id.foodTitle); // Once again, XML id should be food_title.
             foodImage = v.findViewById(R.id.foodImage);
@@ -68,7 +68,6 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodLi
         Food foodObject = foodList.get(position);  // Not a fan of naming something Object. Everything in java is an object.
         holder.foodTitle.setText(foodObject.getTitle());
 
-        // These options could've been chained with the Glide call.
         RequestOptions requestOptions = new RequestOptions()
                 .error(R.mipmap.fork_knife)
                 .placeholder(R.mipmap.fork_knife)
