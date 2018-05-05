@@ -9,4 +9,8 @@ public interface FoodListContract {
     interface View{
         void setRecyclerView(List<Food> foodList);
     }
+
+    interface Presenter {
+        void getFoodList();
+    }
 }

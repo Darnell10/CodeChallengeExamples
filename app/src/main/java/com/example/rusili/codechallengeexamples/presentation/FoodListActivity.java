@@ -21,7 +21,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class FoodListActivity extends AppCompatActivity implements FoodListContract.View{
+public class FoodListActivity extends AppCompatActivity implements FoodListContract.View {
     private RecyclerView foodRecyclerview;
 
     @Override
@@ -34,6 +34,7 @@ public class FoodListActivity extends AppCompatActivity implements FoodListContr
 
         FoodListPresenter presenter = new FoodListPresenter(this, getResources());
         presenter.start();
+        presenter.getFoodList();
     }
 
     @Override

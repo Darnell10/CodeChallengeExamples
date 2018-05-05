@@ -16,11 +16,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class FoodListPresenter {
+public class FoodListPresenter implements FoodListContract.Presenter {
     private final static String TAG = FoodListActivity.class.getSimpleName();
 
     private FoodListContract.View viewImpl;
     private Resources resources;
+
+    private Retrofit retrofit;
 
     public FoodListPresenter(@NonNull FoodListContract.View viewImpl,
                              @NonNull Resources resources) {
@@ -29,8 +31,7 @@ public class FoodListPresenter {
     }
 
     public void start() {
-        Retrofit retrofit = createRetrofit();
-        callService(retrofit);
+        retrofit = createRetrofit();
     }
 
     @NonNull
@@ -41,9 +42,11 @@ public class FoodListPresenter {
                 .build();
     }
 
-    private void callService(@NonNull Retrofit retrofit) {
+    @Override
+    public void getFoodList() {
         FoodService foodService = retrofit.create(FoodService.class);
         Call<List<Food>> foodCall = foodService.getFoodList();
+
         foodCall.enqueue(new Callback<List<Food>>() {
             @Override
             public void onResponse(Call<List<Food>> call, Response<List<Food>> response) {
