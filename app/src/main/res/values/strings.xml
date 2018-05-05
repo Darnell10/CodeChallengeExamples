@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">CodeChallengeExamples</string>
     <string name="great_choice">Great Choice!</string>
+    <string name="error_no_internet">Unable to get foods. Please try again later.</string>
 </resources>

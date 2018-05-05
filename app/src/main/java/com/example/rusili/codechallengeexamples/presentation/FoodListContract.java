@@ -8,6 +8,8 @@ public interface FoodListContract {
 
     interface View{
         void setRecyclerView(List<Food> foodList);
+
+        void showSnackBar(String message);
     }
 
     interface Presenter {

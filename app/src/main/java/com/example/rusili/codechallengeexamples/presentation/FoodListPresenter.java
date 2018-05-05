@@ -57,6 +57,7 @@ public class FoodListPresenter implements FoodListContract.Presenter {
             @Override
             public void onFailure(Call<List<Food>> call, Throwable t) {
                 Log.e(TAG, t.getMessage());
+                viewImpl.showSnackBar(resources.getString(R.string.error_no_internet));
             }
         });
     }
