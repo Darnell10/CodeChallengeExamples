@@ -20,7 +20,7 @@ import java.util.List;
 
 public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodListViewHolder> {
     private List<Food> foodList = new ArrayList<>(); // Even the IDE says this is not needed.
-    private int foodListRow;
+    private int foodListRow; // No clue what this is. See comment below for more info.
     private Context context; // Should save context as little as possible.
 
     /**
@@ -48,24 +48,24 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodLi
 
     /**
      * The constructor should be at the top.
-     * Also, when passing context, it should always be first. The order goes by importance?/size?
+     * Also, when passing context, it should always be first. The order goes by importance/size
      * Also, try not to pass context into non-Android classes.
      */
     public FoodListAdapter(List<Food> foodList, int foodListRow, Context context) {
         this.foodList = foodList;
-        this.foodListRow = foodListRow;
+        this.foodListRow = foodListRow; // Don't know why she's passing in the viewholder xml. Please don't do that. Just set it in your onCreateViewHolder.
         this.context = context;
     }
 
     @Override
     public FoodListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View foodView = LayoutInflater.from(parent.getContext()).inflate(foodListRow, parent, false);
-        return new FoodListViewHolder(foodView); // This could be inlined as well.
+        View foodView = LayoutInflater.from(parent.getContext()).inflate(foodListRow, parent, false); // No need to put your layout in a variable.
+        return new FoodListViewHolder(foodView); // This could be inlined.
     }
 
     @Override
     public void onBindViewHolder(FoodListViewHolder holder, int position) {
-        Food foodObject = foodList.get(position);  // Not a fan of naming something Object. All of java are objects.
+        Food foodObject = foodList.get(position);  // Not a fan of naming something Object. Everything in java is an object.
         holder.foodTitle.setText(foodObject.getTitle());
 
         // These options could've been chained with the Glide call.

@@ -9,5 +9,5 @@ import retrofit2.http.GET;
 
 public interface FoodService {
     @GET("/assets/cmx/us/messages/collections.json")
-    Call<List<Food>> listFood();
+    Call<List<Food>> listFood(); // Better naming could be used. ex: "getFoodList"
 }

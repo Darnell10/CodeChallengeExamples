@@ -57,10 +57,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupView(List<Food> foodList) {
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());  // Should be getting the most "local" context--which would be the activity's context here. NOT application context.
+        // Should be getting the most "local" context--which would be the activity's context here. NOT application context.
+        // Also, if you know your recyclerview layout beforehand, you can set it in the XML: app:layoutManager="android.support.v7.widget.GridLayoutManager"
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
 
         final RecyclerView recyclerView = findViewById(R.id.foodRecyclerview);  // XML Ids should utilize underscores.
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setAdapter(new FoodListAdapter(foodList, R.layout.food_list_row, getApplicationContext()));
+        recyclerView.setAdapter(new FoodListAdapter(foodList, R.layout.food_list_row, getApplicationContext())); // Would rather use "this" as context instead of App Context.
     }
 }
