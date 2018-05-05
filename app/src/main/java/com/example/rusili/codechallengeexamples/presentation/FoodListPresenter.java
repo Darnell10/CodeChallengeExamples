@@ -18,7 +18,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FoodListPresenter implements FoodListContract.Presenter {
-    private final static String TAG = FoodListActivity.class.getSimpleName();
+    private final static String TAG = FoodListPresenter.class.getSimpleName();
 
     private FoodListContract.View viewImpl;
     private FoodService foodService;
