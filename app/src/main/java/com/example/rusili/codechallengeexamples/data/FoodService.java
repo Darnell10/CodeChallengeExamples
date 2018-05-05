@@ -1,6 +1,4 @@
-package com.example.rusili.codechallengeexamples.service;
-
-import com.example.rusili.codechallengeexamples.model.Food;
+package com.example.rusili.codechallengeexamples.data;
 
 import java.util.List;
 

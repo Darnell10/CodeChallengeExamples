@@ -4,19 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/food_viewholder_height"
     android:background="@android:color/white"
-    android:paddingLeft="@dimen/viewholder_padding_left">
+    android:paddingLeft="@dimen/viewholder_padding_horizontal"
+    android:paddingTop="@dimen/viewholder_padding_vertical"
+    android:paddingRight="@dimen/viewholder_padding_horizontal"
+    android:paddingBottom="@dimen/viewholder_padding_vertical">
 
     <ImageView
         android:id="@+id/food_image"
-        android:layout_width="@dimen/food_viewholder_height"
-        android:layout_height="match_parent"
+        android:layout_width="@dimen/viewholder_image_size"
+        android:layout_height="@dimen/viewholder_image_size"
         tools:src="@drawable/ic_replay_black_24dp" />
 
     <TextView
         android:id="@+id/food_name"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/viewholder_padding_left"
+        android:layout_marginLeft="@dimen/viewholder_padding_horizontal"
         android:gravity="center_vertical"
         android:textSize="@dimen/viewholder_title_text_size"
         tools:text="Example Food" />
