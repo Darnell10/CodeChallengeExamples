@@ -69,8 +69,8 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodLi
         holder.foodTitle.setText(foodObject.getTitle());
 
         RequestOptions requestOptions = new RequestOptions()
-                .error(R.mipmap.fork_knife)
-                .placeholder(R.mipmap.fork_knife)
+                .error(R.mipmap.fork_knife) // Good idea to have an error image, but it definitely shouldn't be the same as the placeholder one.
+                .placeholder(R.mipmap.fork_knife) // Why have the image in both mipmap AND drawables? Also, it's 512x512. That's way too large for an icon.
                 .centerCrop();
 
         Glide.with(context)
