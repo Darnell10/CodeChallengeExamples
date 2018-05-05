@@ -1,6 +1,8 @@
 package com.example.rusili.codechallengeexamples.adapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,76 +14,66 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.rusili.codechallengeexamples.model.Food;
-import com.example.rusili.codechallengeexamples.util.JSONConstants;
 import com.example.rusili.codechallengeexamples.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodListViewHolder> {
-    private List<Food> foodList = new ArrayList<>(); // Even the IDE says this is not needed.
-    private int foodListRow; // No clue what this is. See comment below for more info.
-    private Context context; // Should save context as little as possible.
+    private List<Food> foodList;
+    private View viewHolder;
 
-    /**
-     * No idea why this class is static.
-     * Or why it's so up high.
-     * Nested/Inner classes are supposed to be at the bottom of the outer class.
-     */
-    static class FoodListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView foodTitle;
-        private ImageView foodImage;
-
-        private FoodListViewHolder(View v) {  // Personally don't like the name v. Would rather use "view".
-            super(v);
-            foodTitle = v.findViewById(R.id.foodTitle); // Once again, XML id should be food_title.
-            foodImage = v.findViewById(R.id.foodImage);
-            foodImage.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-            Snackbar snackbar = Snackbar.make(view, R.string.great_choice, Snackbar.LENGTH_LONG); // Good job using String resources.
-            snackbar.show(); // Could've inlined the .show().
-        }
-    }
-
-    /**
-     * The constructor should be at the top.
-     * Also, when passing context, it should always be first. The order goes by importance/size
-     * Also, try not to pass context into non-Android classes.
-     */
-    public FoodListAdapter(List<Food> foodList, int foodListRow, Context context) {
+    public FoodListAdapter(@Nullable List<Food> foodList) {
         this.foodList = foodList;
-        this.foodListRow = foodListRow; // Don't know why she's passing in the viewholder xml. Please don't do that. Just set it in your onCreateViewHolder.
-        this.context = context;
     }
 
     @Override
     public FoodListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View foodView = LayoutInflater.from(parent.getContext()).inflate(foodListRow, parent, false); // No need to put your layout in a variable.
-        return new FoodListViewHolder(foodView); // This could be inlined.
+        viewHolder = LayoutInflater.from(parent.getContext()).inflate(R.layout.food_viewholder, parent, false);
+        return new FoodListViewHolder(viewHolder);
     }
 
     @Override
     public void onBindViewHolder(FoodListViewHolder holder, int position) {
-        Food foodObject = foodList.get(position);  // Not a fan of naming something Object. Everything in java is an object.
-        holder.foodTitle.setText(foodObject.getTitle());
+        Food food = foodList.get(position);
+        holder.foodName.setText(food.getTitle());
 
-        // These options could've been chained with the Glide call.
-        RequestOptions requestOptions = new RequestOptions()
-                .error(R.mipmap.fork_knife)
-                .placeholder(R.mipmap.fork_knife)
-                .centerCrop();
-
+        Context context = viewHolder.getContext();
+        String imageUrl = context.getString(R.string.WW_Domain) + food.getImageEndpoint();
+        RequestOptions options = createRequestOptions();
         Glide.with(context)
-                .load(JSONConstants.BASE_URL + foodObject.getImage())
-                .apply(requestOptions)
+                .load(imageUrl)
+                .apply(options)
                 .into(holder.foodImage);
+    }
+
+    @NonNull
+    private RequestOptions createRequestOptions() {
+        return new RequestOptions()
+                .centerCrop()
+                .placeholder(R.drawable.ic_replay_black_24dp)
+                .error(R.drawable.ic_error_outline_black_24dp);
     }
 
     @Override
     public int getItemCount() {
         return foodList.size();
+    }
+
+    class FoodListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        private TextView foodName;
+        private ImageView foodImage;
+
+        private FoodListViewHolder(View view) {
+            super(view);
+
+            foodName = view.findViewById(R.id.food_name);
+            foodImage = view.findViewById(R.id.food_image);
+            foodImage.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            Snackbar.make(view, R.string.great_choice, Snackbar.LENGTH_SHORT).show();
+        }
     }
 }

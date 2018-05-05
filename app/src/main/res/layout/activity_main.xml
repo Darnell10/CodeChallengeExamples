@@ -1,19 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- Don't need Constraint Layout since there's only 1 child. Could just have the RecyclerView as the main view or use a Framelayout. -->
-<!-- Unused namespaces here that should be removed. -->
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/food_rv"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <!-- XML names should always be named with underscores. -->
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/foodRecyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/black"></android.support.v7.widget.RecyclerView>
-    <!-- Widgets should be closed with a /> tag for cleanliness. -->
-
-</android.support.constraint.ConstraintLayout>
+    android:layout_height="match_parent"
+    app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
