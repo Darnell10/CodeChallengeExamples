@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.rusili.codechallengeexamples.R;
 import com.example.rusili.codechallengeexamples.data.Food;
+import com.example.rusili.codechallengeexamples.data.FoodService;
 import com.example.rusili.codechallengeexamples.presentation.recyclerview.FoodListAdapter;
 
 import java.util.List;
@@ -25,8 +26,9 @@ public class FoodListActivity extends AppCompatActivity implements FoodListContr
         foodRecyclerview = findViewById(R.id.food_rv);
         foodRecyclerview.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
-        FoodListPresenter presenter = new FoodListPresenter(this, getResources());
-        presenter.start();
+        FoodListPresenter presenter = new FoodListPresenter(this,
+                new FoodService(getString(R.string.WW_Domain)),
+                getResources());
         presenter.getFoodList();
     }
 
@@ -38,7 +40,6 @@ public class FoodListActivity extends AppCompatActivity implements FoodListContr
 
     @Override
     public void showSnackBar(@NonNull String message) {
-        Snackbar.make(findViewById(android.R.id.content), R.string.great_choice, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT).show();
     }
-
 }

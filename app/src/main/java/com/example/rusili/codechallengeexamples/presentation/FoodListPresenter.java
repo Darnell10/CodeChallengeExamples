@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.example.rusili.codechallengeexamples.R;
 import com.example.rusili.codechallengeexamples.data.Food;
+import com.example.rusili.codechallengeexamples.data.FoodApi;
 import com.example.rusili.codechallengeexamples.data.FoodService;
 
 import java.util.List;
@@ -20,32 +21,21 @@ public class FoodListPresenter implements FoodListContract.Presenter {
     private final static String TAG = FoodListActivity.class.getSimpleName();
 
     private FoodListContract.View viewImpl;
+    private FoodService foodService;
     private Resources resources;
 
-    private Retrofit retrofit;
-
     public FoodListPresenter(@NonNull FoodListContract.View viewImpl,
+                             @NonNull FoodService foodService,
                              @NonNull Resources resources) {
         this.viewImpl = viewImpl;
+        this.foodService = foodService;
         this.resources = resources;
-    }
-
-    public void start() {
-        retrofit = createRetrofit();
-    }
-
-    @NonNull
-    private Retrofit createRetrofit() {
-        return new Retrofit.Builder()
-                .baseUrl(resources.getString(R.string.WW_Domain))
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
     }
 
     @Override
     public void getFoodList() {
-        FoodService foodService = retrofit.create(FoodService.class);
-        Call<List<Food>> foodCall = foodService.getFoodList();
+        FoodApi foodApi = foodService.getFoodApi();
+        Call<List<Food>> foodCall = foodApi.getFoodList();
 
         foodCall.enqueue(new Callback<List<Food>>() {
             @Override
