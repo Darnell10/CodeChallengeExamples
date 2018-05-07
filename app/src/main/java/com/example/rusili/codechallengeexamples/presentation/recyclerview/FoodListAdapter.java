@@ -12,9 +12,16 @@ import com.example.rusili.codechallengeexamples.data.Food;
 
 import java.util.List;
 
+/**
+ * Separated the ViewHolder class. Notice how clean this class looks now.
+ * No Android/context related code here.
+ */
 public class FoodListAdapter extends RecyclerView.Adapter<FoodListViewHolder> {
     private List<Food> foodList;
 
+    /**
+     * Once again, only passing in the list.
+     */
     public FoodListAdapter(@Nullable List<Food> foodList) {
         this.foodList = foodList;
     }

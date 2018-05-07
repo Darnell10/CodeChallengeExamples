@@ -14,6 +14,10 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.rusili.codechallengeexamples.R;
 import com.example.rusili.codechallengeexamples.data.Food;
 
+/**
+ * I put all the view/Android related stuff here.
+ * Passing in the Food object in the bind method to set the views.
+ */
 class FoodListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private TextView foodName;
     private ImageView foodImage;

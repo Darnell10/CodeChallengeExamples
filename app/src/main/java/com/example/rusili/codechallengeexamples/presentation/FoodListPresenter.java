@@ -24,6 +24,11 @@ public class FoodListPresenter implements FoodListContract.Presenter {
     private FoodService foodService;
     private Resources resources;
 
+    /**
+     * Injecting our dependencies on our own with any libraries.
+     * We should always pass in the View so we can call methods from it.
+     * Passing in resources so we can access the Strings resource.
+     */
     public FoodListPresenter(@NonNull FoodListContract.View viewImpl,
                              @NonNull FoodService foodService,
                              @NonNull Resources resources) {

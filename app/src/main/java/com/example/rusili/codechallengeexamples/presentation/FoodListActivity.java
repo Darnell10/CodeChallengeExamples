@@ -15,6 +15,9 @@ import com.example.rusili.codechallengeexamples.presentation.recyclerview.FoodLi
 
 import java.util.List;
 
+/**
+ * Since we're implementing the Contract, we have to create the two methods we set there.
+ */
 public class FoodListActivity extends AppCompatActivity implements FoodListContract.View {
     private RecyclerView foodRecyclerview;
 
@@ -26,6 +29,10 @@ public class FoodListActivity extends AppCompatActivity implements FoodListContr
         foodRecyclerview = findViewById(R.id.food_rv);
         foodRecyclerview.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
+        /**
+         * This is how we instantiate our presenter.
+         * We also pass in all the objects it needs.
+         */
         FoodListPresenter presenter = new FoodListPresenter(this,
                 new FoodService(getString(R.string.WW_Domain)),
                 getResources());
