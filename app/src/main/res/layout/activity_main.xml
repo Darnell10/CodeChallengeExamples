@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Notice there is only 1 widget here. No need for a layout if there's only 1 child. -->
+<!-- Also notice I set the layoutmanager here -->
 <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/food_rv"

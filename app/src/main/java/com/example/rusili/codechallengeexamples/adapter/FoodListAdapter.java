@@ -22,6 +22,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodLi
     private List<Food> foodList;
     private View viewHolder;
 
+    // I removed every parameter except the most important one--the list of items to show.
     public FoodListAdapter(@Nullable List<Food> foodList) {
         this.foodList = foodList;
     }
@@ -29,6 +30,10 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodLi
     @NonNull
     @Override
     public FoodListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        /**
+         * Not passing in the layout. Hardcoding it here since every viewholder will be using the same layout.
+         * Using multiple layouts is another discussion, but should only be done here in the adapter.
+         */
         viewHolder = LayoutInflater.from(parent.getContext()).inflate(R.layout.food_viewholder, parent, false);
         return new FoodListViewHolder(viewHolder);
     }
@@ -38,15 +43,21 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodLi
         Food food = foodList.get(position);
         holder.foodName.setText(food.getTitle());
 
+        // Getting the context from the view. Don't need to save it directly.
         Context context = viewHolder.getContext();
         String imageUrl = context.getString(R.string.WW_Domain) + food.getImageEndpoint();
         RequestOptions options = createRequestOptions();
+
         Glide.with(context)
                 .load(imageUrl)
                 .apply(options)
                 .into(holder.foodImage);
     }
 
+    /**
+     * Moved the creation of the request options into its own method.
+     * Also made the placeholder and error images different.
+     */
     @NonNull
     private RequestOptions createRequestOptions() {
         return new RequestOptions()
@@ -60,6 +71,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodLi
         return foodList.size();
     }
 
+    // Moved the ViewHolder class to the bottom of the parent class. Removed the static modifier.
     class FoodListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView foodName;
         private ImageView foodImage;

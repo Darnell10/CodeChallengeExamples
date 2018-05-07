@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
@@ -28,9 +27,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /**
+         * Moved the retrofit creation into its own method.
+         * This makes reading the onCreate much easier.
+         *
+         * 1) You first create the retrofit object.
+         * 2) Then you call the service with it.
+         */
         Retrofit retrofit = createRetrofit();
         callService(retrofit);
     }
+
 
     @NonNull
     private Retrofit createRetrofit() {
@@ -40,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
     }
 
+    // Now callService ONLY makes the network call.
     private void callService(@NonNull Retrofit retrofit) {
         FoodService foodService = retrofit.create(FoodService.class);
         Call<List<Food>> foodCall = foodService.getFoodList();
@@ -57,6 +65,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Removed the linearlayoutmanager and set it in the xml. Renamed the ids.
+     * Now you can see the progression of code line by line.
+     *
+     * 1) We get the recyclerview widget
+     * 2) we create a new adapter and pass in the list
+     * 3) we set the recyclerview with the new adapter.
+     */
     private void setFoodAdapter(@Nullable List<Food> foodList) {
         RecyclerView recyclerView = findViewById(R.id.food_rv);
         FoodListAdapter adapter = new FoodListAdapter(foodList);
